@@ -61,7 +61,7 @@ function removeExt(path: string) {
 }
 async function plugin(options: FsRouterOptions) {
     const basePath = options.basePath ?? "api";
-    const servePath = options.servePath ?? "api"
+    const servePath = options.servePath ?? basePath
     const baseDir = (path.join(process.cwd(), basePath))
     const files =  await scanFiles(baseDir)
     const toImportPath = (p: string) =>  removeExt( path.relative(__dirname, p))
