@@ -1,7 +1,5 @@
-import {Handler, OverwritableTypeRoute} from "elysia";
-type FsHandler = Handler<OverwritableTypeRoute>
-const handler: FsHandler = (context) => {
-    return context.params?.token;
-}
+import {Context} from "elysia";
 
-export default handler;
+export default async function (ctx: Context) {
+    return ctx.params!.token;
+};

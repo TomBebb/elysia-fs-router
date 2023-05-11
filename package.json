@@ -6,11 +6,11 @@
     "example": "bun example/index.ts"
   },
   "author": {
-    "name": "TomBebb",
+    "name": "Tom Bebbington",
     "url": "https://github.com/TomBebb",
     "email": "tophattedcoder@gmail.com"
   },
-  "name": "elysia-fs-router",
+  "name": "@tophattedcoder/elysia-fs-router",
   "module": "src/index.ts",
   "types": "src/index.ts",
   "type": "module",

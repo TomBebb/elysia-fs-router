@@ -1,15 +1,36 @@
-# elysia-fs-router
+# Elysia Filesustem Router
 
-To install dependencies:
+A plugin for [Elysia.js](https://elysiajs.com/) for server-side APIs
 
-```bash
-bun install
-```
+This works similarly to NextJS Router. Routes are created in an API directory
 
-To run the example:
+## Installation:
 
 ```bash
-bun run example
+bun add @tophattedcoder/elysia-fs-router
 ```
 
-This works similarly to NextJS Router. Routes are created by 
+## Usage
+
+/index.ts
+
+```typescript
+import {Elysia} from 'elysia'
+import {nextRouter} from '@tophattedcoder/elysia-fs-router'
+
+const app = new Elysia()
+const router = await nextRouter();
+router(app)
+app.listen(8080)
+console.log("Server listening at http://localhost:8080")
+```
+
+/api/[id]/info
+
+```typescript
+import {Context} from "elysia";
+
+export default async function (ctx: Context) {
+    return ctx.params!.id;
+};
+```
