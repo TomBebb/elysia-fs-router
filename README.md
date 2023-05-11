@@ -1,4 +1,6 @@
-tAt# Elysia Filesustem Router
+tAt
+
+# Elysia Filesustem Router
 
 A plugin for [Elysia.js](https://elysiajs.com/) for server-side APIs
 
@@ -19,8 +21,7 @@ import {Elysia} from 'elysia'
 import {nextRouter} from '@tophattedcoder/elysia-fs-router'
 
 const app = new Elysia()
-const router = await nextRouter();
-router(app)
+router(nextRouter())
 app.listen(8080)
 console.log("Server listening at http://localhost:8080")
 ```

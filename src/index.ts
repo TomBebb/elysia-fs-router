@@ -1,5 +1,5 @@
 import Elysia from "elysia";
-import * as fs from "fs/promises";
+import * as fs from "fs";
 import * as path from "path";
 
 /**
@@ -34,16 +34,16 @@ export interface FsRouterOptions {
 }
 
 
-async function scanFiles(dir: string): Promise<string[]> {
+function scanFiles(dir: string): string[] {
     const left = [dir]
-    const  files: string[] = []
-    while(left.length > 0) {
+    const files: string[] = []
+    while (left.length > 0) {
         const curr = left.pop()!
-        const results = await fs.readdir(curr)
-        for(const resRaw of results) {
+        const results = fs.readdirSync(curr)
+        for (const resRaw of results) {
             const res = path.join(curr, resRaw)
-            const st =await fs.stat(res)
-            if (st.isFile()) {
+
+            if (res.includes('.')) {
                 files.push(res)
             } else {
                 left.push(res)
@@ -58,11 +58,12 @@ const withExtRegex = /([^\.]+)\..*/;
 function removeExt(path: string) {
     return path.replace(withExtRegex, "$1")
 }
-async function plugin(options: FsRouterOptions) {
+
+function plugin(options: FsRouterOptions) {
     const basePath = options.basePath ?? "api";
     const servePath = options.servePath ?? basePath
     const baseDir = (path.join(process.cwd(), basePath))
-    const files = await scanFiles(baseDir)
+    const files = scanFiles(baseDir)
     const toImportPath = (p: string) => removeExt(path.relative(__dirname, p))
     const toRouterPath = (p: string) =>
         path.join(servePath, path.relative(baseDir, removeExt(p).replaceAll(nextRouterRegex, ":$1")));
@@ -78,6 +79,7 @@ async function plugin(options: FsRouterOptions) {
             })
             console.log('done setting up '+data.router)
         }
+        return app;
     }
 }
 
