@@ -21,5 +21,6 @@
   },
   "peerDependencies": {
     "elysia": ">= 0.4.3"
-  }
+  },
+  "private": false
 }
