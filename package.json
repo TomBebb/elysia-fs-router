@@ -1,0 +1,25 @@
+{
+  "version": "0.0.1",
+  "description": "A NextJS Style FS Router for Elysia",
+  "scripts": {
+    "example-dev": "bun example/index.ts --watch",
+    "example": "bun example/index.ts"
+  },
+  "author": {
+    "name": "TomBebb",
+    "url": "https://github.com/TomBebb",
+    "email": "tophattedcoder@gmail.com"
+  },
+  "name": "elysia-fs-router",
+  "module": "src/index.ts",
+  "types": "src/index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "^0.5.8",
+    "elysia": "^0.4.15",
+    "typescript": "^5.0.4"
+  },
+  "peerDependencies": {
+    "elysia": ">= 0.4.3"
+  }
+}
