@@ -39,7 +39,6 @@ async function scanFiles(dir: string): Promise<string[]> {
     const  files: string[] = []
     while(left.length > 0) {
         const curr = left.pop()!
-        console.log('readdir', curr)
         const results = await fs.readdir(curr)
         for(const resRaw of results) {
             const res = path.join(curr, resRaw)
@@ -62,9 +61,11 @@ function removeExt(path: string) {
 async function plugin(options: FsRouterOptions) {
     const basePath = options.basePath ?? "api";
     const servePath = options.servePath ?? basePath
+
+    console.log('dirs', basePath, servePath)
     const baseDir = (path.join(process.cwd(), basePath))
-    const files =  await scanFiles(baseDir)
-    const toImportPath = (p: string) =>  removeExt( path.relative(__dirname, p))
+    const files = await scanFiles(baseDir)
+    const toImportPath = (p: string) => removeExt(path.relative(__dirname, p))
     const toRouterPath = (p: string) =>
         path.join(servePath, path.relative(baseDir, removeExt(p).replaceAll(nextRouterRegex, ":$1")));
 
