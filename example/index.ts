@@ -1,13 +1,12 @@
 import {Elysia} from 'elysia'
 
-import fsRouter, {FsRouterType} from '../src/index'
+import {nextRouter} from '../src'
 import * as process from "process";
 
 const app = new Elysia()
-const router = await fsRouter({
+const router = await nextRouter({
     basePath: "example/api",
     servePath: "api",
-    type: FsRouterType.NextStyle,
 });
 router(app)
 const port = parseInt(process.env.PORT ?? "8080")
